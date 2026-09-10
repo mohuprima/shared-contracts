@@ -8,8 +8,8 @@ node_modules/
 
 # ==========================================
 # Build & Compilation Outputs
+# (dist/ di-commit ke Git agar npm install git+... langsung mendapatkan index.js & index.d.ts)
 # ==========================================
-dist/
 build/
 *.tsbuildinfo
 
