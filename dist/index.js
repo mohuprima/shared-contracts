@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SOCKET_EVENTS = exports.UserRole = exports.QueueStatus = void 0;
 var QueueStatus;
 (function (QueueStatus) {
+    QueueStatus["HOLD"] = "HOLD";
     QueueStatus["WAITING"] = "WAITING";
     QueueStatus["CALLING"] = "CALLING";
     QueueStatus["SERVED"] = "SERVED";
+    QueueStatus["COMPLETED"] = "COMPLETED";
     QueueStatus["SKIPPED"] = "SKIPPED";
     QueueStatus["CANCELLED"] = "CANCELLED";
 })(QueueStatus || (exports.QueueStatus = QueueStatus = {}));
@@ -26,6 +28,7 @@ exports.SOCKET_EVENTS = {
     QUEUE_CALLED: 'queue:called',
     QUEUE_RECALLED: 'queue:recalled',
     QUEUE_COMPLETED: 'queue:completed',
+    QUEUE_TRANSFERRED: 'queue:transferred',
     QUEUE_SKIPPED: 'queue:skipped',
     QUEUE_UPDATED: 'queue:updated',
     // Hardware status & Scanner events

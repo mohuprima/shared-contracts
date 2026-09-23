@@ -1,7 +1,9 @@
 export enum QueueStatus {
+  HOLD = 'HOLD',
   WAITING = 'WAITING',
   CALLING = 'CALLING',
   SERVED = 'SERVED',
+  COMPLETED = 'COMPLETED',
   SKIPPED = 'SKIPPED',
   CANCELLED = 'CANCELLED'
 }
@@ -36,6 +38,9 @@ export interface ServiceTypeDTO {
   parentId?: string | null;
   parent?: ServiceTypeDTO | null;
   children?: ServiceTypeDTO[];
+  nextServiceId?: string | null;
+  nextService?: ServiceTypeDTO | null;
+  requiresFormBeforeQueue?: boolean;
   iconName?: string | null;
   color?: string | null;
   formFields?: FormFieldConfigDTO[];
@@ -53,6 +58,22 @@ export interface CounterDTO {
   currentQueueId?: string;
 }
 
+export interface QueueStepDTO {
+  id: string;
+  queueId: string;
+  serviceTypeId: string;
+  serviceType?: ServiceTypeDTO;
+  counterId?: string | null;
+  counter?: CounterDTO | null;
+  stepOrder: number;
+  status: QueueStatus;
+  notes?: string | null;
+  calledAt?: string | null;
+  completedAt?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface QueueTicketDTO {
   id: string;
   ticketNumber: string; // e.g. "A001"
@@ -67,10 +88,12 @@ export interface QueueTicketDTO {
   faceImageUrl?: string | null;
   token?: string | null;
   formData?: Record<string, any> | null;
+  notes?: string | null;
   calledAt?: string | null;
   completedAt?: string | null;
   waitingEstimatedMinutes?: number;
   remainingAhead?: number;
+  steps?: QueueStepDTO[];
   createdAt: string;
   updatedAt: string;
 }
@@ -88,6 +111,7 @@ export interface RegisterTicketRequest {
 
 export interface CallNextQueueRequest {
   counterId: string;
+  queueId?: string;
 }
 
 export interface RecallQueueRequest {
@@ -98,6 +122,13 @@ export interface RecallQueueRequest {
 export interface CompleteQueueRequest {
   counterId: string;
   queueId: string;
+  notes?: string;
+}
+
+export interface TransferQueueRequest {
+  counterId: string;
+  queueId: string;
+  targetServiceTypeId: string;
   notes?: string;
 }
 
@@ -129,6 +160,7 @@ export const SOCKET_EVENTS = {
   QUEUE_CALLED: 'queue:called',
   QUEUE_RECALLED: 'queue:recalled',
   QUEUE_COMPLETED: 'queue:completed',
+  QUEUE_TRANSFERRED: 'queue:transferred',
   QUEUE_SKIPPED: 'queue:skipped',
   QUEUE_UPDATED: 'queue:updated',
   
