@@ -28,6 +28,15 @@ export interface FormFieldConfigDTO {
   orderIndex: number;
 }
 
+export interface ServiceDocumentRequirementDTO {
+  id?: string;
+  serviceTypeId?: string;
+  name: string;
+  description?: string | null;
+  isRequired?: boolean;
+  orderIndex?: number;
+}
+
 export interface ServiceTypeDTO {
   id: string;
   code: string; // e.g. 'A', 'B', 'C'
@@ -44,6 +53,7 @@ export interface ServiceTypeDTO {
   iconName?: string | null;
   color?: string | null;
   formFields?: FormFieldConfigDTO[];
+  documentRequirements?: ServiceDocumentRequirementDTO[];
   currentQuota?: number;
   enableFaceCapture?: boolean;
   useParentCode?: boolean;
@@ -67,6 +77,7 @@ export interface QueueStepDTO {
   counter?: CounterDTO | null;
   stepOrder: number;
   status: QueueStatus;
+  transferReasonType?: string | null;
   notes?: string | null;
   calledAt?: string | null;
   completedAt?: string | null;
@@ -89,6 +100,10 @@ export interface QueueTicketDTO {
   token?: string | null;
   formData?: Record<string, any> | null;
   notes?: string | null;
+  isTransferred?: boolean;
+  transferReasonType?: 'WRONG_SERVICE' | 'PROCEDURAL' | string | null;
+  transferredAt?: string | null;
+  transferredFromCounter?: CounterDTO | null;
   calledAt?: string | null;
   completedAt?: string | null;
   waitingEstimatedMinutes?: number;
