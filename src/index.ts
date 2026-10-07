@@ -187,8 +187,22 @@ export const SOCKET_EVENTS = {
   SETTINGS_UPDATED: 'settings:updated',
 
   // Dynamic Services & Forms Broadcast
-  SERVICES_UPDATED: 'services:updated'
+  SERVICES_UPDATED: 'services:updated',
+
+  // Web Display Real-time Configuration Broadcast
+  DISPLAY_CONFIG_UPDATED: 'display:config_updated'
 } as const;
+
+export interface DisplaySettingDTO {
+  id?: string;
+  displayId: string;
+  name: string;
+  layoutMode: 'STANDARD' | 'FOCUS_CURRENT' | 'MULTI_COLUMN_SERVICES' | string;
+  selectedServiceCodes: string[];
+  isAudioActive: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+}
 
 export interface AppSettingDTO {
   id?: string;

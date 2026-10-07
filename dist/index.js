@@ -37,6 +37,8 @@ exports.SOCKET_EVENTS = {
     // App Settings Broadcast
     SETTINGS_UPDATED: 'settings:updated',
     // Dynamic Services & Forms Broadcast
-    SERVICES_UPDATED: 'services:updated'
+    SERVICES_UPDATED: 'services:updated',
+    // Web Display Real-time Configuration Broadcast
+    DISPLAY_CONFIG_UPDATED: 'display:config_updated'
 };
 //# sourceMappingURL=index.js.map

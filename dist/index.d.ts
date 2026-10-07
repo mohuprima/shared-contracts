@@ -24,6 +24,14 @@ export interface FormFieldConfigDTO {
     options?: string[] | null;
     orderIndex: number;
 }
+export interface ServiceDocumentRequirementDTO {
+    id?: string;
+    serviceTypeId?: string;
+    name: string;
+    description?: string | null;
+    isRequired?: boolean;
+    orderIndex?: number;
+}
 export interface ServiceTypeDTO {
     id: string;
     code: string;
@@ -40,6 +48,7 @@ export interface ServiceTypeDTO {
     iconName?: string | null;
     color?: string | null;
     formFields?: FormFieldConfigDTO[];
+    documentRequirements?: ServiceDocumentRequirementDTO[];
     currentQuota?: number;
     enableFaceCapture?: boolean;
     useParentCode?: boolean;
@@ -61,6 +70,7 @@ export interface QueueStepDTO {
     counter?: CounterDTO | null;
     stepOrder: number;
     status: QueueStatus;
+    transferReasonType?: string | null;
     notes?: string | null;
     calledAt?: string | null;
     completedAt?: string | null;
@@ -82,6 +92,10 @@ export interface QueueTicketDTO {
     token?: string | null;
     formData?: Record<string, any> | null;
     notes?: string | null;
+    isTransferred?: boolean;
+    transferReasonType?: 'WRONG_SERVICE' | 'PROCEDURAL' | string | null;
+    transferredAt?: string | null;
+    transferredFromCounter?: CounterDTO | null;
     calledAt?: string | null;
     completedAt?: string | null;
     waitingEstimatedMinutes?: number;
@@ -148,7 +162,18 @@ export declare const SOCKET_EVENTS: {
     readonly KTP_SCANNED: "kiosk:ktp_scanned";
     readonly SETTINGS_UPDATED: "settings:updated";
     readonly SERVICES_UPDATED: "services:updated";
+    readonly DISPLAY_CONFIG_UPDATED: "display:config_updated";
 };
+export interface DisplaySettingDTO {
+    id?: string;
+    displayId: string;
+    name: string;
+    layoutMode: 'STANDARD' | 'FOCUS_CURRENT' | 'MULTI_COLUMN_SERVICES' | string;
+    selectedServiceCodes: string[];
+    isAudioActive: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+}
 export interface AppSettingDTO {
     id?: string;
     appName: string;
