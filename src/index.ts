@@ -197,7 +197,7 @@ export interface DisplaySettingDTO {
   id?: string;
   displayId: string;
   name: string;
-  layoutMode: 'STANDARD' | 'FOCUS_CURRENT' | 'MULTI_COLUMN_SERVICES' | string;
+  layoutMode: 'STANDARD' | 'FOCUS_CURRENT' | 'MULTI_COLUMN_SERVICES' | 'BANNER_ONLY' | string;
   selectedServiceCodes: string[];
   isAudioActive: boolean;
   createdAt?: string;
