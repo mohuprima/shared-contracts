@@ -186,6 +186,8 @@ export interface HelperStatusPayload {
     timestamp: string;
     platform?: string;
     hostname?: string;
+    ipAddress?: string;
+    macAddress?: string;
 }
 export interface DisplaySettingDTO {
     id?: string;

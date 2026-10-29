@@ -219,6 +219,8 @@ export interface HelperStatusPayload {
   timestamp: string;
   platform?: string;
   hostname?: string;
+  ipAddress?: string;
+  macAddress?: string;
 }
 
 
