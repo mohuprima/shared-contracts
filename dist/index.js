@@ -39,6 +39,10 @@ exports.SOCKET_EVENTS = {
     // Dynamic Services & Forms Broadcast
     SERVICES_UPDATED: 'services:updated',
     // Web Display Real-time Configuration Broadcast
-    DISPLAY_CONFIG_UPDATED: 'display:config_updated'
+    DISPLAY_CONFIG_UPDATED: 'display:config_updated',
+    // Device Helper Remote Commands (Shutdown, WOL, Status)
+    HELPER_SHUTDOWN: 'helper:shutdown',
+    HELPER_WOL: 'helper:wol',
+    HELPER_STATUS: 'helper:status'
 };
 //# sourceMappingURL=index.js.map

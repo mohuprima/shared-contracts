@@ -163,7 +163,30 @@ export declare const SOCKET_EVENTS: {
     readonly SETTINGS_UPDATED: "settings:updated";
     readonly SERVICES_UPDATED: "services:updated";
     readonly DISPLAY_CONFIG_UPDATED: "display:config_updated";
+    readonly HELPER_SHUTDOWN: "helper:shutdown";
+    readonly HELPER_WOL: "helper:wol";
+    readonly HELPER_STATUS: "helper:status";
 };
+export interface HelperShutdownPayload {
+    deviceId: string;
+    force?: boolean;
+    delaySeconds?: number;
+    reason?: string;
+}
+export interface HelperWolPayload {
+    targetMacAddress?: string;
+    targetIpAddress?: string;
+    broadcastAddress?: string;
+    port?: number;
+    targetDeviceName?: string;
+}
+export interface HelperStatusPayload {
+    deviceId: string;
+    status: 'ONLINE' | 'OFFLINE';
+    timestamp: string;
+    platform?: string;
+    hostname?: string;
+}
 export interface DisplaySettingDTO {
     id?: string;
     displayId: string;

@@ -190,8 +190,37 @@ export const SOCKET_EVENTS = {
   SERVICES_UPDATED: 'services:updated',
 
   // Web Display Real-time Configuration Broadcast
-  DISPLAY_CONFIG_UPDATED: 'display:config_updated'
+  DISPLAY_CONFIG_UPDATED: 'display:config_updated',
+
+  // Device Helper Remote Commands (Shutdown, WOL, Status)
+  HELPER_SHUTDOWN: 'helper:shutdown',
+  HELPER_WOL: 'helper:wol',
+  HELPER_STATUS: 'helper:status'
 } as const;
+
+export interface HelperShutdownPayload {
+  deviceId: string;
+  force?: boolean;
+  delaySeconds?: number;
+  reason?: string;
+}
+
+export interface HelperWolPayload {
+  targetMacAddress?: string;
+  targetIpAddress?: string;
+  broadcastAddress?: string;
+  port?: number;
+  targetDeviceName?: string;
+}
+
+export interface HelperStatusPayload {
+  deviceId: string;
+  status: 'ONLINE' | 'OFFLINE';
+  timestamp: string;
+  platform?: string;
+  hostname?: string;
+}
+
 
 export interface DisplaySettingDTO {
   id?: string;
